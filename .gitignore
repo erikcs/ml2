@@ -1,3 +1,12 @@
+# Mac
+.DS_Store
+
+# IPython
+.ipynb_checkpoints
+
+
+
+# GitHub default:
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
