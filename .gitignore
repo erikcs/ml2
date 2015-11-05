@@ -4,9 +4,11 @@
 # IPython
 .ipynb_checkpoints
 
+# Div
+assignment01.pdf
 
 
-# GitHub default:
+## GitHub default ##
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
