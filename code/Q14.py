@@ -41,11 +41,11 @@ def run():
 
     ## Interpolation
     pred = 0
-    f = y_prf
+    f = y
     x = X
     xobs = Xobs
 
-    List = [0.1, 0.5, 1.0, 5.0]
+    List = [0.1, 0.5, 1.0, 3.0]
     pidx = 1
     plt.figure(1)
     plt.suptitle('Interpolation')
@@ -57,10 +57,10 @@ def run():
         plt.subplot(len(List), 2, pidx)
         plt.title('l: {}'.format(L))
         pidx += 1
-        plt.plot(X[:,0], y, '+', markersize=10)
+        plt.plot(X[:,0], y, 'ro', markersize=10)
         plt.plot(X[:,0], y_prf, 'ko', markersize=7)
         plt.plot(Xobs[:,0],y_obs, 'k', linewidth=2)
-        plt.plot(Xobs[:,0], mup, '--')
+        plt.plot(Xobs[:,0], mup, '--', linewidth=2)
         for _ in range(3):
             fhat = np.random.multivariate_normal(mup, sigmap)
             plt.plot(Xobs[:,0], fhat)
@@ -71,9 +71,6 @@ def run():
 
     ## Prediction
     pred = 1
-    f = y
-    x = X
-    xobs = Xobs
 
     pidx = 1
     plt.figure(2)
@@ -85,10 +82,10 @@ def run():
         plt.subplot(len(List), 2, pidx)
         plt.title('l: {}'.format(L))
         pidx += 1
-        plt.plot(X[:,0], y, '+', markersize=10)
+        plt.plot(X[:,0], y, 'ro', markersize=10)
         plt.plot(X[:,0], y_prf, 'ko', markersize=7)
         plt.plot(Xobs[:,0],y_obs, 'k', linewidth=2)
-        plt.plot(Xobs[:,0], mup, '--')
+        plt.plot(Xobs[:,0], mup, '--', linewidth=2)
         for _ in range(3):
             fhat = np.random.multivariate_normal(mup, sigmap)
             plt.plot(Xobs[:,0], fhat)
