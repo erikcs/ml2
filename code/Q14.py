@@ -48,7 +48,7 @@ def run():
     List = [0.1, 0.5, 1.0, 3.0]
     pidx = 1
     plt.figure(1)
-    plt.suptitle('Interpolation')
+    plt.suptitle('Interpolation', fontsize=20)
     for L in List:
         mup, sigmap = posterior(f, x, xobs, L, pred)
         """ The VCM could in some cases be borderline degenerate, I just assume this is because of numerical imprecision 
@@ -74,7 +74,7 @@ def run():
 
     pidx = 1
     plt.figure(2)
-    plt.suptitle('Prediction')
+    plt.suptitle('Prediction', fontsize=20)
     for L in List:
         mup, sigmap = posterior(f, x, xobs, L, pred)
 
