@@ -93,7 +93,7 @@ def runMC(S, X, D):
     ## Prior 1 - nondiag VCM ##
     sigma = np.sqrt(10**3)    
     m = np.zeros(3)
-    t = random.rand(3, 3)
+    t = np.random.rand(3, 3)
     sig = sigma**2 * np.dot(t, t.transpose())
     
     for s in range(S):
@@ -125,7 +125,81 @@ def runMC(S, X, D):
     ix = index.create_index_set(res[:,0:4].transpose())
     res[:,-1] = ix
     np.save('code/res_prior22', res)
-#runMC(10**6, X, D)
+#runMC(10**6, X, D) (fname 0, 1, etc)
 # MC run two
-#runMC(10**6, X, D)
+#runMC(10**6, X, D) (00, 11, etc)
+# MC run three
+#runMC(10**7, X, D) (000, etc)
    
+""" Plot the stuff"""
+def showmain(dset=1):
+    if dset == 1:
+        fnames = ['code/res_prior0.npy', 'code/res_prior1.npy', 'code/res_prior2.npy']
+    elif dset == 3:
+        fnames = ['code/res_prior000.npy', 'code/res_prior111.npy', 'code/res_prior222.npy']
+    data = []
+    idx = []
+
+    for fname in fnames:
+        arr = np.load(fname)
+        idx.append(arr[:, -1].astype(int))
+        data.append(arr[:,0:4])
+
+    for id in range(3):
+        arr = data[id]
+        index = idx[id]
+
+        plt.figure(id)
+        plt.suptitle('Evidence (Prior {})'.format(id) ,fontsize=15)
+        plt.subplot(1, 2, 1)
+        plt.plot(arr[index]);
+        plt.legend(['M0', 'M1', 'M2', 'M4'])
+        plt.xlabel('Data sets')
+        plt.ylabel('Evidence')
+        plt.axis('tight');
+
+        plt.subplot(1, 2, 2)
+        plt.plot(arr[index][0:90]);
+        plt.legend(['M0', 'M1', 'M2', 'M4'])
+        plt.xlabel('Data sets (subset)')
+        plt.ylabel('Evidence')
+        plt.axis('tight');
+
+    pidx = 1
+    plt.figure(4)
+    plt.suptitle('Most/least probable data set', fontsize=15)
+    for id in range(3):
+        NROWS = 3
+        NCOLS = 6
+
+        arr = data[id]
+        index = idx[id]
+
+        plt.subplot(NROWS, NCOLS, pidx)
+        pidx += 1
+        plt.title('Prior {}: M1 max'.format(id))
+
+        viz(D, arr[:,1].argmax())
+        plt.subplot(NROWS, NCOLS, pidx)
+        pidx += 1
+        plt.title('M1 min')
+        viz(D, arr[:,1].argmin())
+
+        plt.subplot(NROWS, NCOLS, pidx)
+        pidx += 1
+        plt.title('M2 max')
+        viz(D, arr[:,2].argmax())
+        plt.subplot(NROWS, NCOLS, pidx)
+        pidx += 1
+        plt.title('M2 min')
+        viz(D, arr[:,2].argmin())
+
+        plt.subplot(NROWS, NCOLS, pidx)
+        pidx += 1
+        plt.title('M3 max')
+        viz(D, arr[:,3].argmax())
+        plt.subplot(NROWS, NCOLS, pidx)
+        pidx += 1
+        plt.title('M3 min')
+        viz(D, arr[:,3].argmin())
+
