@@ -153,14 +153,14 @@ def showmain(dset=1):
         plt.suptitle('Evidence (Prior {})'.format(id) ,fontsize=15)
         plt.subplot(1, 2, 1)
         plt.plot(arr[index]);
-        plt.legend(['M0', 'M1', 'M2', 'M4'])
+        plt.legend(['M0', 'M1', 'M2', 'M3'])
         plt.xlabel('Data sets')
         plt.ylabel('Evidence')
         plt.axis('tight');
 
         plt.subplot(1, 2, 2)
         plt.plot(arr[index][0:90]);
-        plt.legend(['M0', 'M1', 'M2', 'M4'])
+        plt.legend(['M0', 'M1', 'M2', 'M3'])
         plt.xlabel('Data sets (subset)')
         plt.ylabel('Evidence')
         plt.axis('tight');
