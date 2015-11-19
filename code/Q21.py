@@ -37,7 +37,8 @@ def run():
         t2 = dot(inv(C), W)
         left = dot(t1, t2)
         right = dot(inv(C), W)
-        grad =  N * (left - right)
+        grad =  N * (-left + right) # Sanity check: check if dloglik(W_star) ~= 0, i.e. I correctly specified
+                                    # the gradients and we are at a stationary point...
         return grad.reshape(20)
 
     # No noise   
