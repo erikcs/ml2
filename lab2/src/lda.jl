@@ -1,4 +1,4 @@
-#=using Distributions=#
+#using Distributions
 
 function ldac2docterm(dictfile::AbstractString, documentfile::AbstractString)
     # Read a document in LDA-C format and return a document-word matrix
