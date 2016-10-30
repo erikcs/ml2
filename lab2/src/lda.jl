@@ -100,9 +100,7 @@ function lda(document_matrix::AbstractArray,
                 CDT[doc, z] += 1
                 TA[doc, i] = z
             end
-
         end
-
     end
 
     # Probs
@@ -112,5 +110,4 @@ function lda(document_matrix::AbstractArray,
     theta ./= sum(theta, 2)
 
     phi, theta
-
 end
