@@ -61,7 +61,7 @@ function lda(document_matrix::AbstractArray,
         end
     end
 
-    # Pre compute the CWT and CDT sums as well
+    # Pre compute the CWT and CDT sums as well, and update underways
     sumCWT = vec(sum(CWT, 1))
     sumCDT = vec(sum(CDT, 1))
 
@@ -79,6 +79,9 @@ function lda(document_matrix::AbstractArray,
                 z = TA[doc, i]
                 CWT[word, z] -= 1
                 CDT[doc, z] -= 1
+
+                sumCWT[z] -= 1
+                sumCDT[z] -= 1
 
                 # Conditional probs
                 # How much each topic "like" this word (smoothed by `beta`)
@@ -98,6 +101,9 @@ function lda(document_matrix::AbstractArray,
                 # Update assignments
                 CWT[word, z] += 1
                 CDT[doc, z] += 1
+
+                sumCWT[z] += 1
+                sumCDT[z] += 1
                 TA[doc, i] = z
             end
         end
