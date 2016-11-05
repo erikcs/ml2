@@ -111,7 +111,7 @@ function lda(document_matrix::AbstractArray,
 
     # Probs
     phi = (CWT + beta) # p(w|z), word topic distribution
-    phi ./= sum(CWT, 1)
+    phi ./= sum(phi, 1)
     theta = (CDT + alpha) # p(z), topic document distribution
     theta ./= sum(theta, 2)
 
