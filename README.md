@@ -1,2 +1,2 @@
 # ml2
-labs for machine learning, advanced course
+labs for machine learning, advanced course, at KTH
